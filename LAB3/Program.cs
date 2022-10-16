@@ -63,6 +63,63 @@ class Set
         A.AddItemSet(rand.Next(10,20));
         return A;
     }
+    public static bool operator <=(Set A, Set B)
+    {
+        int s = 0;
+        foreach(int item in B.members)
+        {
+            foreach(int item2 in A.members)
+            {
+                if(item==item2)
+                {
+                    s++;
+                }
+            }
+        }
+        if(s==A.members.Count())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+    public static bool operator >=(Set A, Set B)
+    {
+        int s = 0;
+        foreach (int item in A.members)
+        {
+            foreach (int item2 in B.members)
+            {
+                if (item == item2)
+                {
+                    s++;
+                }
+            }
+        }
+        if (s == B.members.Count())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+    public static implicit operator int(Set A)
+    {
+        return A.members.Count();
+    }
+
+    public static int operator %(Set A, int  poz)
+    {
+        return A.members[poz];
+    }
 
     public void DisplaySpis()
     {
@@ -99,8 +156,14 @@ namespace LAB3
             A.DisplaySpis();
             B.DisplaySpis();
             A = A + B;
-            A = A++;
+            A++;
+            int pow = A;
+            Console.WriteLine($"Можность множества №{A.number}: " + pow);
             A.DisplaySpis();
+            int el = A % 2;
+            Console.WriteLine(el);
+            Console.WriteLine(A >= B);
+            Console.WriteLine(A <= B);
             Console.WriteLine("Количесвто элементов класса(множеств): " + Set.countofsets);
         }
     }
