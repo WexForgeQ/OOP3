@@ -3,9 +3,10 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Text;
 
 
-class Set
+public class Set
 {
     public List<int> members = new List<int>();
     public static int countofsets = 0;
@@ -140,8 +141,74 @@ class Set
 
     }
 
-
 }
+
+
+public static class StatisticOperations
+{
+
+    public static int SumOfElements(Set A)
+    {
+        int sum = 0;
+        foreach(int item in A.members)
+        {
+            sum+= item;
+        }
+        return sum;
+    }
+    public static int MaxElement(Set A)
+    {
+        int max = -10000000;
+        foreach (int item in A.members)
+        {
+            max=Math.Max(item, max);
+        }
+        return max;
+    }
+    public static int ElementCount(Set A)
+    {
+        return A.members.Count;
+    }
+
+    public static string Encrypt(this string str)
+    {
+        StringBuilder enstr = new StringBuilder();
+       for(int i=0; i<str.Length; i++)
+        {
+            if(i%2==0)
+            {
+                enstr.Append(str[i] + 1);
+            }
+            else
+            {
+                enstr.Append(str[i] + 2);          
+            }
+        }
+        return enstr.ToString();
+    }
+    public static bool CheckOrder(this Set A)
+    {
+        List <int> B = new List<int>();
+        foreach(int item in A.members)
+        {
+            B.Add(item);
+        }
+        B.Sort();
+        for(int i=0; i<A.members.Count(); i++)
+        {
+            if (B[i] != A.members[i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+
+
+
+
 
 namespace LAB3
 {
@@ -156,7 +223,7 @@ namespace LAB3
             A.DisplaySpis();
             B.DisplaySpis();
             A = A + B;
-            A++;
+            //A++;
             int pow = A;
             Console.WriteLine($"Можность множества №{A.number}: " + pow);
             A.DisplaySpis();
@@ -165,6 +232,16 @@ namespace LAB3
             Console.WriteLine(A >= B);
             Console.WriteLine(A <= B);
             Console.WriteLine("Количесвто элементов класса(множеств): " + Set.countofsets);
+            Console.WriteLine(StatisticOperations.MaxElement(A));
+            Console.WriteLine(StatisticOperations.SumOfElements(A));
+            Console.WriteLine(StatisticOperations.ElementCount(A));
+            string str = "aa";
+            string crypt = str.Encrypt();
+            Console.WriteLine(crypt);
+            //A.members.Sort();
+            A.DisplaySpis();
+            bool g = A.CheckOrder();
+            Console.WriteLine(g);
         }
     }
 }
