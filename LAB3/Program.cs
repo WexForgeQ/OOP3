@@ -37,7 +37,32 @@ class Set
         
     }
 
-  
+    public static Set operator +(Set A, Set B)
+    {
+        int s = 0;
+        foreach(var item in B.members)
+        {
+            foreach(var item2 in A.members)
+            {
+                if(item2 == item)
+                {
+                    s++;
+                }
+            }
+            if(s==0)
+            {
+                A.members.Add(item);
+            }
+            s = 0;
+        }
+        return A;
+    }
+    public static Set operator ++(Set A)
+    {
+        Random rand = new Random();
+        A.AddItemSet(rand.Next(10,20));
+        return A;
+    }
 
     public void DisplaySpis()
     {
@@ -73,6 +98,8 @@ namespace LAB3
             Set B = new Set(items2);
             A.DisplaySpis();
             B.DisplaySpis();
+            A = A + B;
+            A = A++;
             A.DisplaySpis();
             Console.WriteLine("Количесвто элементов класса(множеств): " + Set.countofsets);
         }
