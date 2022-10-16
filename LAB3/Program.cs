@@ -8,6 +8,30 @@ using System.Text;
 
 public class Set
 {
+    public class Production
+    {
+        int ID;
+        string Name;
+        public Production(int id, string name)
+        {
+            ID = id;
+            Name = name;
+        }
+    }
+
+    public class Developer
+    {
+        string FIO;
+        int ID;
+        string department;
+        public Developer(string fio, int id, string dep)
+        {
+            ID = id;
+            FIO=fio;
+            department = dep;
+        }
+    }
+
     public List<int> members = new List<int>();
     public static int countofsets = 0;
     public int number = 0;
@@ -216,6 +240,8 @@ namespace LAB3
     {
         static void Main(string[] args)
         {
+            Set.Production Prod  = new Set.Production(27, "Production");
+            Set.Developer Devel = new Set.Developer("Андрей",27, "Production");
             List <int> items1 = new List<int>() {5,6};
             List<int> items2 = new List<int>() { 1, 2, 3, 4 };
             Set A = new Set(items1);
